@@ -31,4 +31,15 @@ app.post('/logs', function (req, res, next) {
   res.send('OK');
 });
 
+// 404 handler
+app.use(function (req, res, next) {
+  res.status(404).send('Sorry cant find that!');
+});
+
+// Error handler
+app.use(function (err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+
 module.exports = app;
